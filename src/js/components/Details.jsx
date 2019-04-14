@@ -14,6 +14,9 @@ import red from '@material-ui/core/colors/red';
 import ThumbUp from '@material-ui/icons/ThumbUp';
 import ThumbDown from '@material-ui/icons/ThumbDown';
 import Bookmark from '@material-ui/icons/Bookmark';
+
+import { LikeArticle, DislikeArticle, BookmarkArticle } from '../actions/index';
+
 const styles = theme => ({
     card: {
         maxWidth: 400,
@@ -38,6 +41,22 @@ class Details extends React.Component {
     constructor(props) {
         super(props);
     }
+
+    handleLike(event) {
+        console.log("like clicked", event);
+        this.props.onLikeClick(event)
+    }
+
+    handleDislike(event) {
+        console.log("dislike clicked", event);
+        this.props.onDislikeClick(event)
+    }
+
+    handleBookmark(event) {
+        console.log("bokmark clicked", event);
+        this.props.onBookmarkClick(event)
+    }
+
     render() {
         let artid = this.props.location.state.id;
         const artrow  = this.props.articles.find((element) => {
@@ -59,22 +78,22 @@ class Details extends React.Component {
                                 <IconButton aria-label="Liked">
 
                                 </IconButton>
-                                <IconButton aria-label="Like">
-                                    <ThumbUp />
+                                <IconButton aria-label="Like" onClick={() => this.handleLike(artrow.id)}>
+                                    <ThumbUp style={{ fill: artrow.like ? '#005fff99' : 'rgba(0, 0, 0, 0.54)' }} />
                                 </IconButton>
 
                                 <IconButton aria-label="Disliked">
 
                                 </IconButton>
-                                <IconButton aria-label="Dislike">
-                                    <ThumbDown />
+                                <IconButton aria-label="Dislike" onClick={() => this.handleDislike(artrow.id)}>
+                                    <ThumbDown style={{ fill: artrow.dislike ? '#005fff99' : 'rgba(0, 0, 0, 0.54)' }} />
                                 </IconButton>
 
                                 <IconButton aria-label="Add to favorites">
 
                                 </IconButton>
-                                <IconButton aria-label="Bookmark">
-                                    <Bookmark />
+                                <IconButton aria-label="Bookmark" onClick={() => this.handleBookmark(artrow.id)}>
+                                    <Bookmark style={{ fill: artrow.bookmark ? 'rgba(255, 124, 0, 0.6)' : 'rgba(0, 0, 0, 0.54)' }} />
                                 </IconButton>
 
 
@@ -131,9 +150,23 @@ const mapStateToProps = state => {
     return { articles: state.articles };
 };
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onLikeClick: (id) => {
+            dispatch(LikeArticle(id))
+        },
+        onDislikeClick: (id) => {
+            dispatch(DislikeArticle(id))
+        },
+        onBookmarkClick: (id) => {
+            dispatch(BookmarkArticle(id))
+        }
+    }
+}
+
 Details.propTypes = {
     classes: PropTypes.object.isRequired,
     theme: PropTypes.object.isRequired,
 }; 
 
-export default withStyles(styles, { withTheme: true })(connect(mapStateToProps, null)(Details)); 
+export default withStyles(styles, { withTheme: true })(connect(mapStateToProps, mapDispatchToProps)(Details)); 

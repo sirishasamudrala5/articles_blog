@@ -1,5 +1,14 @@
-import { SHOW_ARTICLE } from "../constants/action-types";
+import { LIKE_ARTICLE, DISLIKE_ARTICLE, BOOKMARK_ARTICLE } from "../constants/action-types";
 
-export function showArticle(payload) {
-    return { type: "SHOW_ARTICLE", payload }
+export function LikeArticle(payload) {
+    console.log(payload);
+    return { type: "LIKE_ARTICLE", payload }
+};
+
+export function DislikeArticle(payload) {
+    return { type: "DISLIKE_ARTICLE", payload }
+};
+
+export function BookmarkArticle(payload) {
+    return { type: "BOOKMARK_ARTICLE", payload }
 };

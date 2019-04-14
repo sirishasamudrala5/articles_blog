@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { showArticle } from '../actions/index';
+import { LikeArticle, DislikeArticle, BookmarkArticle } from '../actions/index';
 import { withRouter } from "react-router-dom";
 
 import PropTypes from 'prop-types';
@@ -46,8 +46,26 @@ class List extends React.Component {
         this.props.history.push('details', { id: event});
     }
 
+    handleLike(event) {
+        console.log("like clicked", event);
+        this.props.onLikeClick(event)
+    }
+
+    handleDislike(event) {
+        console.log("dislike clicked", event);
+        this.props.onDislikeClick(event)
+    }
+
+    handleBookmark(event) {
+        console.log("bokmark clicked", event);
+        this.props.onBookmarkClick(event)
+    }
+
     render() {
         const { articles } = this.props;
+        console.log(articles);
+
+
         return (
             <ul className="list-group list-group-flush">
                 {articles.map(el => (
@@ -79,22 +97,22 @@ class List extends React.Component {
                                 <IconButton aria-label="Liked">
                                     
                                 </IconButton>
-                                <IconButton aria-label="Like">
-                                    <ThumbUp />
+                                <IconButton aria-label="Like" onClick={() => this.handleLike(el.id)}>
+                                    <ThumbUp style={{ fill: el.like ? '#005fff99' : 'rgba(0, 0, 0, 0.54)' }} />
                                 </IconButton>
 
                                 <IconButton aria-label="Disliked">
 
                                 </IconButton>
-                                <IconButton aria-label="Dislike">
-                                    <ThumbDown />
+                                <IconButton aria-label="Dislike" onClick={() => this.handleDislike(el.id)}>
+                                    <ThumbDown style={{ fill: el.dislike ? '#005fff99' : 'rgba(0, 0, 0, 0.54)' }} />
                                 </IconButton>
 
                                 <IconButton aria-label="Add to favorites">
 
                                 </IconButton>
-                                <IconButton aria-label="Bookmark">
-                                    <Bookmark />
+                                <IconButton aria-label="Bookmark" onClick={() => this.handleBookmark(el.id)}>
+                                    <Bookmark style={{ fill: el.bookmark ? 'rgba(255, 124, 0, 0.6)' : 'rgba(0, 0, 0, 0.54)' }} />
                                 </IconButton>
 
                                 
@@ -114,8 +132,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onArticleClick: (id) => {
-            dispatch(showArticle(id))
+        onLikeClick: (id) => {
+            dispatch(LikeArticle(id))
+        },
+        onDislikeClick: (id) => {
+            dispatch(DislikeArticle(id))
+        },
+        onBookmarkClick: (id) => {
+            dispatch(BookmarkArticle(id))
         }
     }
 }
