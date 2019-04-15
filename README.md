@@ -20,3 +20,7 @@ This is a simple react application which shows a list of articles.
     * This command should automatically open a new tab or window in your default web browser. This tab will automatically refresh whenever you make changes to source code.
     * Each time the setup script is run, you will need to stop the client server with `Ctrl-C` and rerun `npm run start` in order for the new `.env` config file to take effect.
     * This project runs on port 6080 on your localhost. The port number can be modified in `webpack.config.js` file.
+
+## License
+
+This application is released under the [BSD 2-Clause License](LICENSE)
