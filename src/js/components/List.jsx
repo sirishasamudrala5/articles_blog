@@ -80,7 +80,12 @@ class List extends React.Component {
                             
                             <CardContent>
                                 <Typography component="p">
+<<<<<<< HEAD
                                     {el.description.substring(0, 120)}
+=======
+                                    This impressive paella is a perfect party dish and a fun meal to cook together with your
+                                    guests. 
+>>>>>>> 0fb04462f943eba9c3b0cce245c9a60cd356753a
                                 </Typography>
                                 
                                 </CardContent>
@@ -97,14 +102,22 @@ class List extends React.Component {
                                     
                                 </IconButton>
                                 <IconButton aria-label="Like" onClick={() => this.handleLike(el.id)}>
+<<<<<<< HEAD
                                     {el.likec}<ThumbUp style={{ fill: el.like ? 'rgba(1, 104, 254, 0.54)' : 'rgba(0, 0, 0, 0.54)' }} />
+=======
+                                    <ThumbUp style={{ fill: el.like ? '#005fff99' : 'rgba(0, 0, 0, 0.54)' }} />
+>>>>>>> 0fb04462f943eba9c3b0cce245c9a60cd356753a
                                 </IconButton>
 
                                 <IconButton aria-label="Disliked">
 
                                 </IconButton>
                                 <IconButton aria-label="Dislike" onClick={() => this.handleDislike(el.id)}>
+<<<<<<< HEAD
                                     {el.dislikec}<ThumbDown style={{ fill: el.dislike ? 'rgba(1, 104, 254, 0.54)' : 'rgba(0, 0, 0, 0.54)' }} />
+=======
+                                    <ThumbDown style={{ fill: el.dislike ? '#005fff99' : 'rgba(0, 0, 0, 0.54)' }} />
+>>>>>>> 0fb04462f943eba9c3b0cce245c9a60cd356753a
                                 </IconButton>
 
                                 <IconButton aria-label="Add to favorites">
